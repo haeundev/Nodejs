@@ -1,15 +1,12 @@
 
-const fs = require('fs');
+// Importing the EventEmitter class from events module.
+const EventEmitter = require('events');
+const emitter = new EventEmitter();
 
-// however, try not to use this method as it is blocking and can slow down the app
-const files = fs.readdirSync('./'); 
-console.log(files);
+// Register a listener
+emitter.on('messageLogged', function() {
+    console.log('Listener called');
+  });
 
-// this is the non-blocking, async way
-fs.readdir('./', (err, files) => {
-  if (err) {
-    console.log('Error:', err);
-  } else {
-    console.log('Files:', files);
-  }
-});
+// Raise an event
+emitter.emit('messageLogged');
