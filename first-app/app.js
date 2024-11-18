@@ -1,8 +1,15 @@
 
-const os = require('os');
+const fs = require('fs');
 
-var totalMemory = os.totalmem();
-var freeMemory = os.freemem();
+// however, try not to use this method as it is blocking and can slow down the app
+const files = fs.readdirSync('./'); 
+console.log(files);
 
-console.log(`Total Memory: ${totalMemory}`);
-console.log(`Free Memory: ${freeMemory}`);
+// this is the non-blocking, async way
+fs.readdir('./', (err, files) => {
+  if (err) {
+    console.log('Error:', err);
+  } else {
+    console.log('Files:', files);
+  }
+});
