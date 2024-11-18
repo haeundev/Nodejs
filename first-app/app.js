@@ -1,5 +1,6 @@
 
-const log = require('./logger'); // This will load the logger.js file
-// why const? because we don't want to reassign the value of logger
+const path = require('path'); // built-in module
 
-log('message');
+var pathObj = path.parse(__filename);
+
+console.log(pathObj);
